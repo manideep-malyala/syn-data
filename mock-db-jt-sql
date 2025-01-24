@@ -1,0 +1,102 @@
+-- 1. Revenue Table
+-- This table tracks the revenue generated from various services like mobile, broadband, device sales, and other business lines.
+CREATE TABLE Revenue (
+    revenue_id INT PRIMARY KEY, -- Unique ID for the revenue record
+    revenue_type VARCHAR(255), -- Type of revenue (e.g., Mobile, Broadband, Device Sales)
+    amount DECIMAL(15, 2), -- Total revenue amount (for example, mobile revenue in millions) [Data from 2010 to 2024]
+    date DATE, -- Date of revenue recording [Data from 2010 to 2024]
+    service_id INT, -- Foreign key referencing the different services (Mobile, Broadband, etc.) [Data from 2010 to 2024]
+    region_id INT, -- Foreign key referencing different regions to track regional revenue [Data from 2010 to 2024]
+    FOREIGN KEY (service_id) REFERENCES Services(service_id),
+    FOREIGN KEY (region_id) REFERENCES Regions(region_id)
+);
+
+-- 2. Operating Expenses Table
+-- This table tracks operational costs such as salaries, marketing, network maintenance, etc., and can be divided by departments.
+CREATE TABLE Operating_Expenses (
+    expense_id INT PRIMARY KEY, -- Unique ID for the expense record
+    expense_type VARCHAR(255), -- Type of expense (e.g., Marketing, Salaries, Network Maintenance) [Data from 2010 to 2024]
+    amount DECIMAL(15, 2), -- Expense amount [Data from 2010 to 2024]
+    date DATE, -- Date of the expense recorded [Data from 2010 to 2024]
+    department VARCHAR(255), -- Department responsible for the expense (e.g., Marketing, Network, HR) [Data from 2010 to 2024]
+    region_id INT, -- Region where the expense occurred [Data from 2010 to 2024]
+    FOREIGN KEY (region_id) REFERENCES Regions(region_id)
+);
+
+-- 3. Liabilities Table
+-- This table tracks liabilities such as loans, payables, etc., that the company owes.
+CREATE TABLE Liabilities (
+    liability_id INT PRIMARY KEY, -- Unique ID for the liability record
+    liability_type VARCHAR(255), -- Type of liability (e.g., Short-term loan, Long-term debt) [Data from 2010 to 2024]
+    amount DECIMAL(15, 2), -- Liability amount (e.g., loan amount, payable bills) [Data from 2010 to 2024]
+    due_date DATE, -- Date when the liability is due [Data from 2010 to 2024]
+    interest_rate DECIMAL(5, 2) -- Interest rate for loans or credit lines [Data from 2010 to 2024]
+);
+
+-- 4. Balance Sheet Table
+-- This table tracks the company’s assets, liabilities, and equity to reflect its financial health.
+CREATE TABLE Balance_Sheet (
+    date DATE PRIMARY KEY, -- Date of the balance sheet report [Data from 2010 to 2024]
+    total_assets DECIMAL(15, 2), -- Total value of the company’s assets [Data from 2010 to 2024]
+    total_liabilities DECIMAL(15, 2), -- Total liabilities [Data from 2010 to 2024]
+    shareholder_equity DECIMAL(15, 2) -- Shareholder equity [Data from 2010 to 2024]
+);
+
+-- 5. Profit and Loss (P&L) Table
+-- This table captures the company's income and expenses, calculating the profit over a given period.
+CREATE TABLE Profit_and_Loss (
+    report_id INT PRIMARY KEY, -- Unique ID for the profit and loss report
+    period VARCHAR(50), -- Period (e.g., Q1 2025, FY 2025) [Data from 2010 to 2024]
+    revenue DECIMAL(15, 2), -- Total revenue generated in the period [Data from 2010 to 2024]
+    cost_of_goods_sold DECIMAL(15, 2), -- Direct costs associated with goods sold (e.g., cost of network, devices) [Data from 2010 to 2024]
+    gross_profit DECIMAL(15, 2), -- Gross profit (Revenue - COGS) [Data from 2010 to 2024]
+    operating_expenses DECIMAL(15, 2), -- Operating expenses (salaries, marketing, etc.) [Data from 2010 to 2024]
+    net_income DECIMAL(15, 2) -- Net income (Revenue - COGS - Expenses) [Data from 2010 to 2024]
+);
+
+-- 6. Assets Table
+-- This table tracks the company’s physical and intangible assets, including network infrastructure, office buildings, etc.
+CREATE TABLE Assets (
+    asset_id INT PRIMARY KEY, -- Unique ID for the asset record
+    asset_type VARCHAR(255), -- Type of asset (e.g., Network Infrastructure, Office Buildings) [Data from 2010 to 2024]
+    value DECIMAL(15, 2), -- Value of the asset (e.g., cost of acquiring the infrastructure) [Data from 2010 to 2024]
+    acquisition_date DATE, -- Date when the asset was acquired [Data from 2010 to 2024]
+    depreciation DECIMAL(15, 2) -- Depreciation on the asset (e.g., annual depreciation of network infrastructure) [Data from 2010 to 2024]
+);
+
+-- 7. Key Financial Ratios Table
+-- This table stores important financial metrics and ratios to track the company’s performance over time.
+CREATE TABLE Key_Financial_Ratios (
+    ratio_id INT PRIMARY KEY, -- Unique ID for the ratio record
+    ratio_name VARCHAR(255), -- Name of the financial ratio (e.g., ROI, Gross Profit Margin) [Data from 2010 to 2024]
+    value DECIMAL(10, 4), -- The value of the ratio (e.g., 0.25 for profit margin) [Data from 2010 to 2024]
+    date DATE -- Date the ratio was calculated [Data from 2010 to 2024]
+);
+
+-- 8. Tax Payments Table
+-- This table tracks the tax liabilities and payments made by the company.
+CREATE TABLE Tax_Payments (
+    tax_id INT PRIMARY KEY, -- Unique ID for the tax record
+    amount DECIMAL(15, 2), -- Tax payment amount (e.g., corporate tax, GST) [Data from 2010 to 2024]
+    tax_type VARCHAR(255), -- Type of tax (e.g., Income tax, GST) [Data from 2010 to 2024]
+    payment_date DATE, -- Date the tax was paid [Data from 2010 to 2024]
+    tax_period VARCHAR(50) -- Period for which the tax is due (e.g., Q1 2024) [Data from 2010 to 2024]
+);
+
+-- 9. Cash Flow from Operations Table
+-- This table tracks the cash flow from operating activities such as revenue collection and payments.
+CREATE TABLE Cash_Flow_Operations (
+    cash_flow_id INT PRIMARY KEY, -- Unique ID for the cash flow record
+    amount DECIMAL(15, 2), -- Cash flow amount (e.g., $100,000 inflow or outflow) [Data from 2010 to 2024]
+    date DATE, -- Date of cash flow transaction [Data from 2010 to 2024]
+    type VARCHAR(50) -- Type of cash flow (Inflow or Outflow) [Data from 2010 to 2024]
+);
+
+-- 10. Investment and CapEx Table
+-- This table tracks capital expenditures (CapEx) and investments made by the company in infrastructure, new projects, etc.
+CREATE TABLE Investment_CapEx (
+    investment_id INT PRIMARY KEY, -- Unique ID for the investment record
+    investment_type VARCHAR(255), -- Type of investment (e.g., Network Expansion, Equipment Purchase) [Data from 2010 to 2024]
+    amount DECIMAL(15, 2), -- Amount invested [Data from 2010 to 2024]
+    date DATE -- Date the investment was made [Data from 2010 to 2024]
+);
