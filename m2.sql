@@ -36,6 +36,18 @@ CREATE TABLE Liabilities (
 
 
 
+-- Table Name: Balance_Sheet
+-- Purpose: This table tracks the company’s assets, liabilities, and equity to reflect its financial health.
+
+CREATE TABLE Balance_Sheet (
+    date DATE PRIMARY KEY, -- Date of the balance sheet report
+    total_assets DECIMAL(15, 2), -- Total value of the company’s assets
+    total_liabilities DECIMAL(15, 2), -- Total liabilities
+    shareholder_equity DECIMAL(15, 2) -- Shareholder equity
+);
+
+
+
 
 -- 2020
 INSERT INTO Revenue (revenue_id, revenue_type, amount, date) VALUES
@@ -164,6 +176,32 @@ INSERT INTO Liabilities (liability_id, liability_type, amount, due_date, interes
 (24, 'Accounts payable', 13000000.00, '2024-04-30', 0.00),
 (25, 'Bank overdrafts', 4500000.00, '2024-07-15', 5.90);
 
+
+
+-- 2020
+INSERT INTO Balance_Sheet (date, total_assets, total_liabilities, shareholder_equity) 
+VALUES 
+('2020-12-31', 450000000000.00, 250000000000.00, 200000000000.00);
+
+-- 2021
+INSERT INTO Balance_Sheet (date, total_assets, total_liabilities, shareholder_equity) 
+VALUES 
+('2021-12-31', 470000000000.00, 260000000000.00, 210000000000.00);
+
+-- 2022
+INSERT INTO Balance_Sheet (date, total_assets, total_liabilities, shareholder_equity) 
+VALUES 
+('2022-12-31', 495000000000.00, 270000000000.00, 225000000000.00);
+
+-- 2023
+INSERT INTO Balance_Sheet (date, total_assets, total_liabilities, shareholder_equity) 
+VALUES 
+('2023-12-31', 520000000000.00, 280000000000.00, 240000000000.00);
+
+-- 2024
+INSERT INTO Balance_Sheet (date, total_assets, total_liabilities, shareholder_equity) 
+VALUES 
+('2024-12-31', 550000000000.00, 290000000000.00, 260000000000.00);
 
 
 
